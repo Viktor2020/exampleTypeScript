@@ -1,26 +1,32 @@
 
-console.log('startMain');
+// console.log('startMain');
 import Person from './Person'
+import {ControllerView2d} from './2d/ControllerView2d'
+
+
 import {AppEvent} from './AppEvent'
+import {EventName2d} from "./2d/EventName2d";
 
 export function App() {
-    console.log('startMain1');
+    console.log('старт приложения');
 
-    document.getElementById('hed').innerHTML = 'startMain1';
+    // document.body.innerHTML = 'Example';
     console.log(new Person());
+
+    var controllerView2d = new ControllerView2d();
 
     let ev = new AppEvent();
 
-    ev.on('test', function (data) {
-        console.log(data);
-    });
+    // ev.on('test', function (data) {
+    //     console.log(data);
+    // });
 
-    ev.emit('test');
-    console.log(ev.events);
+    ev.emit(EventName2d.STARTCREATE2D);
+    // console.log(ev.events);
 
-    console.log('startMain2');
+    // console.log('startMain2');
 }
-console.log('startMain3');
+// console.log('startMain3');
 // bigSob.on('das', function () {
 //
 // });
@@ -29,7 +35,7 @@ console.log('startMain3');
 
 var app = new App();
 // console.log(app);
-console.log('startMai4');
+// console.log('startMai4');
 
 //
 // import Person from "./Person";

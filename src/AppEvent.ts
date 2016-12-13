@@ -1,8 +1,8 @@
 ﻿export interface IAppEvent {
-    on: (eventName: string, fun)=>void;
-    off: (eventName: string, fun)=>void;
-    emit: (eventName: string, data?:any)=>void;
-    isHas: (eventName: string, fun)=>boolean;
+    on: (eventName: string|number, fun)=>void;
+    off: (eventName: string|number, fun)=>void;
+    emit: (eventName: string|number, data?: any)=>void;
+    isHas: (eventName: string|number, fun)=>boolean;
 }
 /**
  * Singleton AppEvent
@@ -21,12 +21,12 @@ export class AppEvent implements IAppEvent {
     stop: boolean = false;
     events: Object = {};
 
-    on(eventName: string, fun) {
+    on(eventName: string|number, fun) {
         this.events[eventName] = this.events[eventName] || [];
         this.events[eventName].push(fun);
     }
 
-    off(eventName: string, fun) {
+    off(eventName: string|number, fun) {
         if (this.events[eventName]) {
             for (var i = 0; i < this.events[eventName].length; i++) {
                 if (this.events[eventName][i] === fun) {
@@ -37,7 +37,7 @@ export class AppEvent implements IAppEvent {
         }
     }
 
-    emit(eventName: string, data?:any) {
+    emit(eventName: string|number, data?: any) {
         if (this.stop) return;
         if (this.events[eventName]) {
             this.events[eventName].forEach(function (fun) {
@@ -46,7 +46,7 @@ export class AppEvent implements IAppEvent {
         }
     }
 
-    isHas(eventName: string, fun) {
+    isHas(eventName: string|number, fun) {
         if (this.events[eventName]) {
             this.events[eventName].forEach(function (_fun) {
                 if (_fun === fun) {
