@@ -7,7 +7,8 @@ define(["require", "exports"], function (require, exports) {
             this.imagesLink = [
                 'resource/images/img.png',
                 'resource/images/img1.png',
-                'resource/images/imgif.gif'
+                'resource/images/imgif.gif',
+                'resource/images/tileset.png'
             ];
             console.log('начинаем загружать ресурсы для 2д');
             PIXI.loader.add(this.imagesLink).load(fun).on("progress", loadProgressHandler || Preloader.loadProgressHandler.bind(this));

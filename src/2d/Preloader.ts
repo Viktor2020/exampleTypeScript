@@ -6,7 +6,8 @@ export class Preloader {
     public imagesLink:string[] = [
         'resource/images/img.png',
         'resource/images/img1.png',
-        'resource/images/imgif.gif'
+        'resource/images/imgif.gif',
+        'resource/images/tileset.png'
     ];
 
     constructor(fun:()=>void, loadProgressHandler?:(loader, resource)=>void) {

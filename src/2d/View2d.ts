@@ -8,8 +8,8 @@ export class View2d {
     public stage: PIXI.Container;
     private _x: number = 0;
     private _y: number = 0;
-    private _width: number = 256;
-    private _height: number = 256;
+    private _width: number = 1320;
+    private _height: number = 720;
     private sobEvent:AppEvent = new AppEvent();// события
     private preloader: Preloader;       // предзагрузчик
 
@@ -32,23 +32,17 @@ export class View2d {
         this.resizeFromWindow();
         window.addEventListener("resize", this.resizeFromWindow.bind(this));
 
-        this.update();
 
+        this.sobEvent.on(EventName2d.ADDTOSTAGE2D, this.addToStage.bind(this));
+
+        this.update();
         this.sobEvent.emit(EventName2d.COMPLETECREATE2D);
-        this.testcreate();
     }
 
-    testcreate() {
-        //Create the `cat` sprite from the texture
-        var cat = new PIXI.Sprite(
-            PIXI.loader.resources["resource/images/imgif.gif"].texture
-        );
-
-        //Add the cat to the stage
-        this.stage.addChild(cat);
-        this.update();
-
+    public addToStage(c:PIXI.Container) {
+        this.stage.addChild(c);
     }
+
 
     private resizeFromWindow() {
         scaleToWindow(this.renderer.view);
@@ -56,7 +50,11 @@ export class View2d {
 
     //Tell the `renderer` to `render` the `stage`
     public update() {
+        this.sobEvent.emit(EventName2d.UPDATE2D);
+
         this.renderer.render(this.stage);
+
+        requestAnimationFrame(this.update.bind(this));
     }
 
 

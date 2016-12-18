@@ -1,4 +1,4 @@
-define(["require", "exports", "../AppEvent", "./View2d", "./EventName2d"], function (require, exports, AppEvent_1, View2d_1, EventName2d_1) {
+define(["require", "exports", "../AppEvent", "./View2d", "./EventName2d", "./World2d"], function (require, exports, AppEvent_1, View2d_1, EventName2d_1, World2d_1) {
     "use strict";
     // управляющий 2д
     function ControllerView2d() {
@@ -8,6 +8,7 @@ define(["require", "exports", "../AppEvent", "./View2d", "./EventName2d"], funct
         sobEvent.on(EventName2d_1.EventName2d.STARTCREATE2D, function () {
             console.log('пришла команда создания 2д');
             view2d = new View2d_1.View2d();
+            var world2d = new World2d_1.World2d();
         });
     }
     exports.ControllerView2d = ControllerView2d;

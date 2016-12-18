@@ -5,8 +5,8 @@ define(["require", "exports", "../AppEvent", "./EventName2d", "./Preloader"], fu
         function View2d() {
             this._x = 0;
             this._y = 0;
-            this._width = 256;
-            this._height = 256;
+            this._width = 1320;
+            this._height = 720;
             this.sobEvent = new AppEvent_1.AppEvent(); // события
             console.log('создаем 2д...');
             // начинаем загружать ресы
@@ -22,23 +22,21 @@ define(["require", "exports", "../AppEvent", "./EventName2d", "./Preloader"], fu
             this.stage = new PIXI.Container();
             this.resizeFromWindow();
             window.addEventListener("resize", this.resizeFromWindow.bind(this));
+            this.sobEvent.on(EventName2d_1.EventName2d.ADDTOSTAGE2D, this.addToStage.bind(this));
             this.update();
             this.sobEvent.emit(EventName2d_1.EventName2d.COMPLETECREATE2D);
-            this.testcreate();
         };
-        View2d.prototype.testcreate = function () {
-            //Create the `cat` sprite from the texture
-            var cat = new PIXI.Sprite(PIXI.loader.resources["resource/images/imgif.gif"].texture);
-            //Add the cat to the stage
-            this.stage.addChild(cat);
-            this.update();
+        View2d.prototype.addToStage = function (c) {
+            this.stage.addChild(c);
         };
         View2d.prototype.resizeFromWindow = function () {
             scaleToWindow(this.renderer.view);
         };
         //Tell the `renderer` to `render` the `stage`
         View2d.prototype.update = function () {
+            this.sobEvent.emit(EventName2d_1.EventName2d.UPDATE2D);
             this.renderer.render(this.stage);
+            requestAnimationFrame(this.update.bind(this));
         };
         View2d.prototype.resize = function (x, y, width, height) {
             this.renderer.resize(width, height);

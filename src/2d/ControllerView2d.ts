@@ -1,6 +1,7 @@
 import {AppEvent} from "../AppEvent";
 import {View2d} from "./View2d";
 import {EventName2d} from "./EventName2d";
+import {World2d} from "./World2d";
 
 // управляющий 2д
 export function ControllerView2d() {
@@ -12,6 +13,7 @@ export function ControllerView2d() {
     sobEvent.on(EventName2d.STARTCREATE2D, function () {
         console.log('пришла команда создания 2д');
         view2d = new View2d();
+        let world2d = new World2d();
     });
 
 }
