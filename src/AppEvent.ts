@@ -1,8 +1,11 @@
-﻿export interface IAppEvent {
-    on: (eventName: string|number, fun)=>void;
-    off: (eventName: string|number, fun)=>void;
-    emit: (eventName: string|number, data?: any)=>void;
-    isHas: (eventName: string|number, fun)=>boolean;
+﻿import {EventName} from "./EventName";
+import {EventName2d} from "./2d/EventName2d";
+import {EventName3d} from "./3d/EventName3d";
+export interface IAppEvent {
+    on: (eventName: EventName|EventName2d|EventName3d, fun)=>void;
+    off: (eventName: EventName|EventName2d|EventName3d, fun)=>void;
+    emit: (eventName: EventName|EventName2d|EventName3d, data?: any)=>void;
+    isHas: (eventName: EventName|EventName2d|EventName3d, fun)=>boolean;
 }
 /**
  * Singleton AppEvent
@@ -21,12 +24,12 @@ export class AppEvent implements IAppEvent {
     stop: boolean = false;
     events: Object = {};
 
-    on(eventName: string|number, fun) {
+    on(eventName: EventName|EventName2d|EventName3d, fun: Function) {
         this.events[eventName] = this.events[eventName] || [];
         this.events[eventName].push(fun);
     }
 
-    off(eventName: string|number, fun) {
+    off(eventName: EventName|EventName2d|EventName3d, fun: Function) {
         if (this.events[eventName]) {
             for (var i = 0; i < this.events[eventName].length; i++) {
                 if (this.events[eventName][i] === fun) {
@@ -37,7 +40,7 @@ export class AppEvent implements IAppEvent {
         }
     }
 
-    emit(eventName: string|number, data?: any) {
+    emit(eventName: EventName|EventName2d|EventName3d, data?: any) {
         if (this.stop) return;
         if (this.events[eventName]) {
             this.events[eventName].forEach(function (fun) {
@@ -46,7 +49,7 @@ export class AppEvent implements IAppEvent {
         }
     }
 
-    isHas(eventName: string|number, fun) {
+    isHas(eventName: EventName|EventName2d|EventName3d, fun: Function) {
         if (this.events[eventName]) {
             this.events[eventName].forEach(function (_fun) {
                 if (_fun === fun) {
