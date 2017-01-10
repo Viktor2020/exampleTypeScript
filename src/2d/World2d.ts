@@ -70,5 +70,17 @@ export class World2d {
         this.cat.anchor.set(0.5, 0.5);
         this.content.addChild(this.cat);
 
+        let id = resources["resource/images/sprites.json"].textures;
+        console.log(resources,id);
+        let sprite = new Sprite(id['1.png']);
+        this.content.addChild(sprite);
+        let sprite1 = new Sprite(id['2.png']);
+        sprite1.x = 300;
+        this.content.addChild(sprite1);
+        let sprite2 = new Sprite(id['2.png']);
+        sprite2.x = 300;
+        sprite2.y = 300;
+        this.content.addChild(sprite2);
+
     }
 }

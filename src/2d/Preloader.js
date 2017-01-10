@@ -8,6 +8,8 @@ define(["require", "exports"], function (require, exports) {
                 'resource/images/img.png',
                 'resource/images/img1.png',
                 'resource/images/imgif.gif',
+                'resource/images/sprites.json',
+                'resource/images/sprites.png',
                 'resource/images/tileset.png'
             ];
             console.log('начинаем загружать ресурсы для 2д');

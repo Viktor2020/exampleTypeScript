@@ -1,4 +1,4 @@
-define(["require", "exports", "./Person", "./2d/ControllerView2d", "./AppEvent", "./2d/EventName2d"], function (require, exports, Person_1, ControllerView2d_1, AppEvent_1, EventName2d_1) {
+define(["require", "exports", './Person', './2d/ControllerView2d', './AppEvent', "./2d/EventName2d"], function (require, exports, Person_1, ControllerView2d_1, AppEvent_1, EventName2d_1) {
     "use strict";
     function App() {
         console.log('старт приложения');
