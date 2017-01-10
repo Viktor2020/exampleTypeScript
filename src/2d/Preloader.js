@@ -5,12 +5,8 @@ define(["require", "exports"], function (require, exports) {
         function Preloader(fun, loadProgressHandler) {
             // список картинок для загрузки
             this.imagesLink = [
-                'resource/images/img.png',
-                'resource/images/img1.png',
-                'resource/images/imgif.gif',
                 'resource/images/sprites.json',
-                'resource/images/sprites.png',
-                'resource/images/tileset.png'
+                'resource/font/font.fnt'
             ];
             console.log('начинаем загружать ресурсы для 2д');
             PIXI.loader.add(this.imagesLink).load(fun).on("progress", loadProgressHandler || Preloader.loadProgressHandler.bind(this));

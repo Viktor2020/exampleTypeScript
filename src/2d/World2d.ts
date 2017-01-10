@@ -6,6 +6,7 @@ import Container = PIXI.Container;
 import ParticleContainer = PIXI.particles.ParticleContainer;
 import Rectangle = PIXI.Rectangle;
 import Text = PIXI.Text;
+import BitmapText = PIXI.extras.BitmapText;
 import {keyboard} from "../utill/Keyboard";
 let resources = PIXI.loader.resources;
 
@@ -88,15 +89,7 @@ export class World2d {
 		sprite1.x = 300;
 		this.content.addChild(sprite1);
 
-		let txt = new Text("Hello World in asld a asjd asd asdlasdas als djlasjf sdfl jsadfsadljf asdfl jlsajd flsa jl; asdjfl;asd jf;l asdjf", {
-			fontFamily: 'Arial',
-			fontSize: 24,
-			fill: 0xff1010,
-			align: 'center',
-			dropShadow: true,
-			wordWrap: true,
-			wordWrapWidth: 100
-		});
+		let txt = new BitmapText("A B C", {font: "Arial"});
 		txt.position.set(350, 50);
 		this.content.addChild(txt);
 

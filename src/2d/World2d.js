@@ -2,7 +2,7 @@ define(["require", "exports", "../AppEvent", "./EventName2d", "../utill/Keyboard
     "use strict";
     var Sprite = PIXI.Sprite;
     var Container = PIXI.Container;
-    var Text = PIXI.Text;
+    var BitmapText = PIXI.extras.BitmapText;
     var resources = PIXI.loader.resources;
     var World2d = (function () {
         function World2d() {
@@ -66,15 +66,7 @@ define(["require", "exports", "../AppEvent", "./EventName2d", "../utill/Keyboard
             var sprite1 = new Sprite(id['2.png']);
             sprite1.x = 300;
             this.content.addChild(sprite1);
-            var txt = new Text("Hello World in asld a asjd asd asdlasdas als djlasjf sdfl jsadfsadljf asdfl jlsajd flsa jl; asdjfl;asd jf;l asdjf", {
-                fontFamily: 'Arial',
-                fontSize: 24,
-                fill: 0xff1010,
-                align: 'center',
-                dropShadow: true,
-                wordWrap: true,
-                wordWrapWidth: 100
-            });
+            var txt = new BitmapText("A B C", { font: "Arial" });
             txt.position.set(350, 50);
             this.content.addChild(txt);
             this.cat.vx = 0;
