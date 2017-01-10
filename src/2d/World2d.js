@@ -1,23 +1,18 @@
 define(["require", "exports", "../AppEvent", "./EventName2d", "../utill/Keyboard"], function (require, exports, AppEvent_1, EventName2d_1, Keyboard_1) {
     "use strict";
     var Sprite = PIXI.Sprite;
-    var ParticleContainer = PIXI.particles.ParticleContainer;
+    var Container = PIXI.Container;
+    var Text = PIXI.Text;
     var resources = PIXI.loader.resources;
     var World2d = (function () {
         function World2d() {
             /*You have to make some compromises if you decide to use a ParticleContainer.
-            Sprites inside a ParticleContainer only have a few basic properties: x, y, width, height, scale, pivot, alpha, visible – and that’s about it.
-            Also, the sprites that it contains can’t have nested children of their own.
-            A ParticleContainer also can’t use Pixi’s advanced visual effects like filters and blend modes.
-            Each ParticleContainer can use only one texture (so you'll have to use a spritesheet if you want Sprites with different appearances).
-            But for the huge performance boost that you get, those compromises are usually worth it. */
-            this.content = new ParticleContainer(15000, {
-                position: true,
-                rotation: true,
-                alpha: false,
-                scale: false,
-                uvs: false
-            });
+             Sprites inside a ParticleContainer only have a few basic properties: x, y, width, height, scale, pivot, alpha, visible – and that’s about it.
+             Also, the sprites that it contains can’t have nested children of their own.
+             A ParticleContainer also can’t use Pixi’s advanced visual effects like filters and blend modes.
+             Each ParticleContainer can use only one texture (so you'll have to use a spritesheet if you want Sprites with different appearances).
+             But for the huge performance boost that you get, those compromises are usually worth it. */
+            this.content = new Container();
             this.sobEvent = new AppEvent_1.AppEvent(); // события
             this.nap = false;
             this.dimention = 1;
@@ -71,6 +66,17 @@ define(["require", "exports", "../AppEvent", "./EventName2d", "../utill/Keyboard
             var sprite1 = new Sprite(id['2.png']);
             sprite1.x = 300;
             this.content.addChild(sprite1);
+            var txt = new Text("Hello World in asld a asjd asd asdlasdas als djlasjf sdfl jsadfsadljf asdfl jlsajd flsa jl; asdjfl;asd jf;l asdjf", {
+                fontFamily: 'Arial',
+                fontSize: 24,
+                fill: 0xff1010,
+                align: 'center',
+                dropShadow: true,
+                wordWrap: true,
+                wordWrapWidth: 100
+            });
+            txt.position.set(350, 50);
+            this.content.addChild(txt);
             this.cat.vx = 0;
             this.cat.vy = 0;
             //Capture the keyboard arrow keys

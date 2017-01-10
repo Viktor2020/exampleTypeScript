@@ -5,24 +5,19 @@ import TextureCache = PIXI.utils.TextureCache;
 import Container = PIXI.Container;
 import ParticleContainer = PIXI.particles.ParticleContainer;
 import Rectangle = PIXI.Rectangle;
+import Text = PIXI.Text;
 import {keyboard} from "../utill/Keyboard";
 let resources = PIXI.loader.resources;
 
 
 export class World2d {
 	/*You have to make some compromises if you decide to use a ParticleContainer.
-	Sprites inside a ParticleContainer only have a few basic properties: x, y, width, height, scale, pivot, alpha, visible – and that’s about it.
-	Also, the sprites that it contains can’t have nested children of their own.
-	A ParticleContainer also can’t use Pixi’s advanced visual effects like filters and blend modes.
-	Each ParticleContainer can use only one texture (so you'll have to use a spritesheet if you want Sprites with different appearances).
-	But for the huge performance boost that you get, those compromises are usually worth it. */
-	public content = new ParticleContainer(15000, {
-		position: true,
-		rotation: true,
-		alpha: false,
-		scale: false,
-		uvs: false
-	});
+	 Sprites inside a ParticleContainer only have a few basic properties: x, y, width, height, scale, pivot, alpha, visible – and that’s about it.
+	 Also, the sprites that it contains can’t have nested children of their own.
+	 A ParticleContainer also can’t use Pixi’s advanced visual effects like filters and blend modes.
+	 Each ParticleContainer can use only one texture (so you'll have to use a spritesheet if you want Sprites with different appearances).
+	 But for the huge performance boost that you get, those compromises are usually worth it. */
+	public content = new Container();
 
 	private sobEvent: AppEvent = new AppEvent();// события
 	private cat: Sprite;
@@ -93,6 +88,17 @@ export class World2d {
 		sprite1.x = 300;
 		this.content.addChild(sprite1);
 
+		let txt = new Text("Hello World in asld a asjd asd asdlasdas als djlasjf sdfl jsadfsadljf asdfl jlsajd flsa jl; asdjfl;asd jf;l asdjf", {
+			fontFamily: 'Arial',
+			fontSize: 24,
+			fill: 0xff1010,
+			align: 'center',
+			dropShadow: true,
+			wordWrap: true,
+			wordWrapWidth: 100
+		});
+		txt.position.set(350, 50);
+		this.content.addChild(txt);
 
 		this.cat.vx = 0;
 		this.cat.vy = 0;
