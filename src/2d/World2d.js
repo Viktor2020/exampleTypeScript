@@ -1,4 +1,4 @@
-define(["require", "exports", "../AppEvent", "./EventName2d"], function (require, exports, AppEvent_1, EventName2d_1) {
+define(["require", "exports", "../AppEvent", "./EventName2d", "../utill/Keyboard"], function (require, exports, AppEvent_1, EventName2d_1, Keyboard_1) {
     "use strict";
     var Sprite = PIXI.Sprite;
     var TextureCache = PIXI.utils.TextureCache;
@@ -22,6 +22,8 @@ define(["require", "exports", "../AppEvent", "./EventName2d"], function (require
         };
         World2d.prototype.update = function () {
             this.cat.rotation += 0.01;
+            this.cat.x += this.cat.vx;
+            this.cat.y += this.cat.vy;
             if (this.rocket.x > 300) {
                 this.dimention = -1;
                 this.rocket.rotation = Math.PI;
@@ -59,10 +61,64 @@ define(["require", "exports", "../AppEvent", "./EventName2d"], function (require
             var sprite1 = new Sprite(id['2.png']);
             sprite1.x = 300;
             this.content.addChild(sprite1);
-            var sprite2 = new Sprite(id['2.png']);
-            sprite2.x = 300;
-            sprite2.y = 300;
-            this.content.addChild(sprite2);
+            this.cat.vx = 0;
+            this.cat.vy = 0;
+            //Capture the keyboard arrow keys
+            var left = Keyboard_1.keyboard(37), up = Keyboard_1.keyboard(38), right = Keyboard_1.keyboard(39), down = Keyboard_1.keyboard(40);
+            var cat = this.cat;
+            //Left arrow key `press` method
+            left.press = function () {
+                console.log('left.press');
+                //Change the cat's velocity when the key is pressed
+                cat.vx = -5;
+                cat.vy = 0;
+            };
+            //Left arrow key `release` method
+            left.release = function () {
+                console.log('left.release');
+                //If the left arrow has been released, and the right arrow isn't down,
+                //and the cat isn't moving vertically:
+                //Stop the cat
+                if (!right.isDown && cat.vy === 0) {
+                    cat.vx = 0;
+                }
+            };
+            //Up
+            up.press = function () {
+                console.log('up.press');
+                cat.vy = -5;
+                cat.vx = 0;
+            };
+            up.release = function () {
+                console.log('up.release');
+                if (!down.isDown && cat.vx === 0) {
+                    cat.vy = 0;
+                }
+            };
+            //Right
+            right.press = function () {
+                console.log('right.press');
+                cat.vx = 5;
+                cat.vy = 0;
+            };
+            right.release = function () {
+                console.log('right.release');
+                if (!left.isDown && cat.vy === 0) {
+                    cat.vx = 0;
+                }
+            };
+            //Down
+            down.press = function () {
+                console.log('down.press');
+                cat.vy = 5;
+                cat.vx = 0;
+            };
+            down.release = function () {
+                console.log('down.release');
+                if (!up.isDown && cat.vx === 0) {
+                    cat.vy = 0;
+                }
+            };
         };
         return World2d;
     }());
