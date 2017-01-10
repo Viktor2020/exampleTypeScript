@@ -5,6 +5,12 @@ define(["require", "exports", "../AppEvent", "./EventName2d", "../utill/Keyboard
     var resources = PIXI.loader.resources;
     var World2d = (function () {
         function World2d() {
+            /*You have to make some compromises if you decide to use a ParticleContainer.
+            Sprites inside a ParticleContainer only have a few basic properties: x, y, width, height, scale, pivot, alpha, visible – and that’s about it.
+            Also, the sprites that it contains can’t have nested children of their own.
+            A ParticleContainer also can’t use Pixi’s advanced visual effects like filters and blend modes.
+            Each ParticleContainer can use only one texture (so you'll have to use a spritesheet if you want Sprites with different appearances).
+            But for the huge performance boost that you get, those compromises are usually worth it. */
             this.content = new ParticleContainer(15000, {
                 position: true,
                 rotation: true,
